@@ -6,14 +6,14 @@
 #    By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/13 14:52:44 by alerandy          #+#    #+#              #
-#    Updated: 2018/03/09 12:05:37 by alerandy         ###   ########.fr        #
+#    Updated: 2018/03/13 11:42:04 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 SRC_PATH = srcs/
 OBJ_PATH = objects/
-SRC_NAME = main.c \
+SRC_NAME = main.c usage.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 CC = gcc $(FLAG)
@@ -25,9 +25,9 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 all : $(NAME)
 
 $(NAME) : libft $(OBJ)
-	@$(CC) $(LIB) $(OBJ) -o $(NAME)
+	@$(CC) $(LIB) -Llibft/ -lft $(OBJ) -o $(NAME)
 	@echo "\033[32m/------------------------------------\ \\033[0m"
-	@echo "\033[32m|----------- $(NAME) crée ------------| \\033[0m"
+	@echo "\033[32m|----------- $(NAME) crée -------------| \\033[0m"
 	@echo "\033[32m\------------------------------------/ \\033[0m"
 
 libft :
@@ -48,7 +48,6 @@ fclean :
 	@$(MAKE) -C libft/ fclean
 
 re : fclean $(NAME)
-	@printf "\033[\r\033[K""\033[32mLibrairie mlx compilé avec succès.\033[0m\n"
 
 norm :
 	@clear
@@ -63,4 +62,4 @@ normall :
 	@norminette srcs/ includes/
 	@norminette libft/srcs/ libft/includes/
 
-.PHONY : fclean clean re norm norml norm normall all
+.PHONY : fclean libft clean re norm norml norm normall all

@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/09 12:09:23 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/13 13:17:42 by alerandy         ###   ########.fr       */
+/*   Created: 2018/03/13 11:39:08 by alerandy          #+#    #+#             */
+/*   Updated: 2018/03/13 13:18:39 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
+#include "ft_ls.h"
 
-# include "../libft/includes/libft.h"
-
-# include <dirent.h>
-# include <sys/types.h>
-# include <sys/dir.h>
-
-typedef struct	s_flag
+void		usage(int e, char *name, char c)
 {
-	int			l;
-	int			R;
-	int			a;
-	int			r;
-	int			t;
-}				t_flag;
-
-void			usage(int e, char *name, char c);
-
-#endif
+	ft_putstr("ft_ls: ");
+	name ? ft_putstr(name) : 0;
+	name ? ft_putstr(": ") : 0;
+	e == 1 ? ft_putstr("No such file or directory.") : 0;
+	e == 401 ? ft_putstr("Illegal option -- ") : 0;
+	e == 401 && c != 0 ? ft_putchar(c) : 0;
+	ft_putendl("");
+	e >= 400 ? exit(0) : 0;
+}
