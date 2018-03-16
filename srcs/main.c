@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 12:08:56 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/16 18:14:43 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/16 19:52:17 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void		first_occurence(int ac, DIR **dir, char **av, t_flag *flag)
 	}
 	else
 	{
-		--i;
+		i = -1;
 		while (++i < ac)
 		{
 			dir[i] && ac > 1 ? ft_putstr(av[i]) : 0;
 			dir[i] && ac > 1 ? ft_putendl(":") : 0;
 			save_dir(&(dir[i]), flag, av[i]);
-			i != 1 && i != ac - 1 ? ft_putchar('\n') : 0;
+			i != ac - 1 ? ft_putchar('\n') : 0;
 		}
 	}
 }
