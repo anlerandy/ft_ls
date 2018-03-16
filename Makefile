@@ -6,17 +6,17 @@
 #    By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/13 14:52:44 by alerandy          #+#    #+#              #
-#    Updated: 2018/03/13 11:42:04 by alerandy         ###   ########.fr        #
+#    Updated: 2018/03/15 02:52:37 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 SRC_PATH = srcs/
 OBJ_PATH = objects/
-SRC_NAME = main.c usage.c \
+SRC_NAME = main.c usage.c cmp_charcont.c save_tolst.c big_r.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
-CC = gcc $(FLAG)
+CC = gcc $(FLAG) -g3
 LIB = -Iincludes -Ilibft/includes
 FLAG = -Wall -Werror -Wextra
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
