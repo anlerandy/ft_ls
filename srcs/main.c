@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 12:08:56 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/16 19:52:17 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/18 16:53:33 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int			main(int ac, char **av)
 	while (i < ac && av[i][0] == '-' && ft_strlen(av[i]) > 1)
 		parse_flag(av[i++], flag);
 	dir = ft_memalloc(sizeof(DIR *) * (ac - i));
-	sort_char_table(av + i, ac - i, flag->r);
+	!flag->f ? sort_char_table(av + i, ac - i, flag->r) : 0;
 	cur = dir_opener(i, ac, av, dir);
 	first_occurence(ac - cur, dir, av + cur, flag);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 11:39:08 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/14 23:05:56 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/18 18:06:13 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		usage(int e, char *name, char c)
 	name ? ft_putstr(name) : 0;
 	name ? ft_putstr(": ") : 0;
 	e == 1 ? ft_putstr("No such file or directory.") : 0;
+	e == 2 ? ft_putstr("stat failed whith : ") : 0;
+	e == 2 && name ? ft_putstr(name) : 0;
 	e == 400 ? ft_putstr("Memory allocation fatal error.") : 0;
 	e == 401 ? ft_putstr("illegal option -- ") : 0;
 	e == 401 && c != 0 ? ft_putchar(c) : 0;

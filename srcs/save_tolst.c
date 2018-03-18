@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:43:51 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/16 20:25:23 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/18 17:55:15 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,46 @@ void		del_charcont(void *cont, size_t size)
 
 void		put_charcont(void *cont)
 {
-	ft_putendl(cont);
+	t_file	*file;
+
+	file = (t_file*)cont;
+	ft_putendl(file->name);
 }
 
-void		fold_tolst(DIR **dir, t_flag *flag, t_list **list)
+char		*join_path(char *name, char *path)
+{
+	char	*str;
+	char	*tmp;
+
+	tmp = ft_strjoin(path, "/");
+	str = ft_strjoin(tmp, name);
+	free(tmp);
+	return (str);
+}
+
+void		fold_tolst(DIR **dir, t_flag *flag, t_list **list, char *path)
 {
 	_DIRENT	*fold;
 	t_list	*tmp;
+	t_file	file;
 
 	fold = NULL;
 	tmp = NULL;
 	while ((fold = readdir(*dir)))
 		if (fold->d_name[0] != '.' || flag->a)
 		{
+			file.name = ft_strdup(fold->d_name);
+			file.path = join_path(file.name, path);
+			if (flag->l && !(flag->serr = stat(file.path, file.stat)))
+				usage(2, file.path, 0);
 			if (*list)
 			{
-				tmp = ft_lstnew(fold->d_name, ft_strlen(fold->d_name) + 1);
+				tmp = ft_lstnew(&file, sizeof(t_file));
 				ft_lstadd(list, tmp);
 //				ft_lstdel(&tmp, &del_charcont);
 			}
 			else
-				*list = ft_lstnew(fold->d_name, ft_strlen(fold->d_name) + 1);
+				*list = ft_lstnew(&file, sizeof(t_file));
 		}
 }
 
@@ -57,9 +76,7 @@ void		save_dir(DIR **dir, t_flag *flag, char *path)
 	list = NULL;
 	i = 0;
 	if (*dir)
-	{
-		fold_tolst(dir, flag, &list);
-	}
+		fold_tolst(dir, flag, &list, path);
 	else
 		(fd = open(path, O_RDONLY)) > 0 ? ft_putendl(path) : 0;
 	!flag->f && !flag->r ? ft_lstsort(&list, &cmp_charcont) : 0;
