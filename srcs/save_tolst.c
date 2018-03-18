@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:43:51 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/18 17:55:15 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/18 19:02:17 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void		put_charcont(void *cont)
 	t_file	*file;
 
 	file = (t_file*)cont;
-	ft_putendl(file->name);
+	file->user = getpwuid(file->stat->st_uid);
+	ft_putstr(file->user->pw_name);
+	ft_putchar(' ');
+	ft_putstr(file->name);
+	ft_putchar(' ');
+	ft_putstr(ctime(&(file->stat->st_mtimespec.tv_sec)));
 }
 
 char		*join_path(char *name, char *path)
@@ -54,7 +59,8 @@ void		fold_tolst(DIR **dir, t_flag *flag, t_list **list, char *path)
 		{
 			file.name = ft_strdup(fold->d_name);
 			file.path = join_path(file.name, path);
-			if (flag->l && !(flag->serr = stat(file.path, file.stat)))
+			file.stat = ft_memalloc(sizeof(_STAT));
+			if (flag->l && (flag->serr = stat(file.path, file.stat) == -1))
 				usage(2, file.path, 0);
 			if (*list)
 			{

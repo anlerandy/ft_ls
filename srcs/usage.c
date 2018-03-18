@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 11:39:08 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/18 18:06:13 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/18 18:38:17 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void		usage(int e, char *name, char c)
 	e == 401 && c != 0 ? ft_putchar(c) : 0;
 	e == 401 && c != 0 ? ft_putstr("\nusage: ls [Raflrt] [file ...]") : 0;
 	ft_putendl("");
+	perror("");
 	e >= 400 ? exit(0) : 0;
 }
