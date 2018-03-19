@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 12:09:23 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/18 19:00:45 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:21:56 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 # include <sys/stat.h>
 # include <pwd.h>
 # include <time.h>
+# include <grp.h>
 
 # include <stdio.h>
 
 # define _DIRENT struct dirent
 # define _STAT struct stat
 # define _PASWD struct passwd
+# define _GROUP struct group
 
 typedef struct	s_flag
 {
@@ -45,6 +47,7 @@ typedef struct	s_file
 	char		*path;
 	_STAT		*stat;
 	_PASWD		*user;
+	_GROUP		*group;
 }				t_file;
 
 void			usage(int e, char *name, char c);
