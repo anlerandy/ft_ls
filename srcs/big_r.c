@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:45:16 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/19 19:51:45 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:07:10 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void		big_r(t_list *list, t_flag *flag, char *path)
 		}
 		tmp = &(*tmp)->next;
 	}
+	ft_strdel(&path);
 }

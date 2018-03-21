@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 12:09:23 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/19 17:21:56 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/03/21 16:12:14 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ int				cmp_charcont(void *s1, void *s2);
 int				r_cmp_charcont(void *s1, void *s2);
 void			save_dir(DIR **dir, t_flag *flag, char *path);
 void			big_r(t_list *list, t_flag *flag, char *path);
+
+void			put_lcharcont(void *cont);
+void			put_charcont(void *cont);
+char			*join_path(char *name, char *path);
+void			del_filecont(void *cont, size_t size);
+void			ft_lstat(char *path);
 
 #endif
