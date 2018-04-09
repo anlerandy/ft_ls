@@ -6,11 +6,26 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:43:51 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/21 18:54:17 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/04/09 09:57:46 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void		ft_lstpushback(t_list **list, t_file file)
+{
+	t_list	**nlist;
+
+	nlist = list;
+	if (*list)
+	{
+		while (*nlist && (*nlist)->next)
+			nlist = &((*nlist)->next);
+		(*nlist)->next = ft_lstnew(&file, sizeof(t_file));
+	}
+	else
+		*list = ft_lstnew(&file, sizeof(t_file));
+}
 
 void		fold_tolst(DIR **dir, t_flag *flag, t_list **list, char *path)
 {
@@ -30,13 +45,7 @@ void		fold_tolst(DIR **dir, t_flag *flag, t_list **list, char *path)
 			file.stat = ft_memalloc(sizeof(_STAT));
 			if (flag->l && (flag->serr = lstat(file.path, file.stat) == -1))
 				usage(402, file.path, 0);
-			if (*list)
-			{
-				tmp = ft_lstnew(&file, sizeof(t_file));
-				ft_lstadd(list, tmp);
-			}
-			else
-				*list = ft_lstnew(&file, sizeof(t_file));
+			ft_lstpushback(list, file);
 		}
 }
 
