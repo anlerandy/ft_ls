@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:45:16 by alerandy          #+#    #+#             */
-/*   Updated: 2018/03/21 19:17:39 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/04/09 15:35:32 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		big_r(t_list *list, t_flag *flag, char *path)
 				ft_putendl(subpath);
 				save_dir(&dir, flag, subpath);
 			}
+			dir ? closedir(dir) : 0;
+			dir = NULL;
 			ft_strdel(&subpath);
 		}
 		tmp = &(*tmp)->next;

@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 13:34:24 by alerandy          #+#    #+#             */
-/*   Updated: 2018/04/09 13:59:50 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/04/09 15:37:19 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		put_lcharcont(void *cont)
 	char	link[1024];
 	char	*tmp;
 
+	str = NULL;
 	ft_bzero(&link, 1024);
 	file = (t_file*)cont;
 	str = ft_itoa(file->stat->st_nlink);

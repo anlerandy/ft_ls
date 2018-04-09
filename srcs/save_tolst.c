@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:43:51 by alerandy          #+#    #+#             */
-/*   Updated: 2018/04/09 09:57:46 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/04/09 15:31:21 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void		save_dir(DIR **dir, t_flag *flag, char *path)
 	flag->upr ? big_r(list, flag, path) : 0;
 	ft_lstdel(&list, &del_filecont);
 	*dir ? closedir(*dir) : 0;
+	*dir = NULL;
 }
