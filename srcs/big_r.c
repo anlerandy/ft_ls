@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 02:45:16 by alerandy          #+#    #+#             */
-/*   Updated: 2018/04/09 15:35:32 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:31:55 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void		big_r(t_list *list, t_flag *flag, char *path)
 	path = ft_strjoin(path, "/");
 	while (*tmp)
 	{
-		if (((file = (*tmp)->content)->name[0] != '.' &&  \
-				ft_strlen(file->name) != 1) || ((ft_strlen(file->name) != 2 \
-						&& file->name[0] != '.' && file->name[1] != '.')))
+		if (((file = (*tmp)->content)->name[0] != '.' &&  ft_strlen(file->name) != 1) || 
+				(ft_strlen(file->name) != 2 && file->name[0] != '.' && file->name[1] != '.')
+			|| (ft_strlen(file->name) > 2 && file->name[0] == '.' && flag->a))
 		{
 			subpath = ft_strjoin(path, file->name);
 			if ((dir = opendir(subpath)) && readlink(file->path, link, 1024) == -1)
