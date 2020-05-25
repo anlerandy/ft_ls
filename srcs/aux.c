@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 13:34:24 by alerandy          #+#    #+#             */
-/*   Updated: 2018/04/09 15:37:19 by alerandy         ###   ########.fr       */
+/*   Updated: 2020/05/25 20:42:45 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void		put_lcharcont(void *cont)
 	ft_bzero(&link, 1024);
 	file = (t_file*)cont;
 	str = ft_itoa(file->stat->st_nlink);
-	file->user = getpwuid(file->stat->st_uid);
-	ft_internjoin(&str, " ", file->user->pw_name);
-	file->group = getgrgid(file->stat->st_gid);
-	ft_internjoin(&str, " ", file->group->gr_name);
+	if ((file->user = getpwuid(file->stat->st_uid)))
+		ft_internjoin(&str, " ", file->user->pw_name);
+	if ((file->group = getgrgid(file->stat->st_gid)))
+		ft_internjoin(&str, " ", file->group->gr_name);
 	ft_internjoin(&str, " ", (tmp = ft_itoa(file->stat->st_size)));
 	ft_strdel(&tmp);
 	tmp = ctime(&(file->stat->st_mtimespec.tv_sec));
